@@ -1,0 +1,22 @@
+version: '2'
+services:
+  freeradius:
+    build: .
+    ports:
+      - "1812:1812/udp"
+      - "1813:1813/udp"
+    links:
+      - mysql
+    restart: always
+
+  mysql:
+    image: percona:5.7.20
+    volumes:
+      - ./mysql:/docker-entrypoint-initdb.d
+      - freeradius-mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    restart: always
+
+volumes:
+  freeradius-mysql-data:
