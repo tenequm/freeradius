@@ -2,7 +2,7 @@
 # Dockerfile for freeradius
 #
 
-FROM alpine:3.7
+FROM alpine:3.4
 MAINTAINER tenequm <tenequm@gmail.com>
 
 RUN set -xe \
